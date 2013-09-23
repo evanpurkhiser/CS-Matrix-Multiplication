@@ -1,6 +1,6 @@
 
 experiment: experiment.c
-	gcc -Wall -o experiment experiment.c
+	gcc -Wall -std=c99 -o experiment experiment.c
 
 all: experiment
 
