@@ -63,6 +63,8 @@ int main(int argc, char*  argv[])
 			printf("%lld,", execution_time);
 			fflush(stdout);
 		}
+
+		puts("");
 	}
 
 	return 0;
