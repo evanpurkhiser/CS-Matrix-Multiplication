@@ -25,10 +25,9 @@ int main(int argc, char*  argv[])
 	// Iterate through the block sizes
 	for (int block_size = 4; block_size <= 256; block_size *= 2)
 	{
-		printf("%03d: ", block_size);
+		int average = 0;
 
-		// Keep track of the times for this block
-		time_t block_times[TRIALS];
+		printf("%03d: ", block_size);
 
 		// Run TRIALS number of trials for each block size
 		for (int trial = 0; trial < TRIALS; ++trial)
@@ -43,14 +42,12 @@ int main(int argc, char*  argv[])
 			struct timeval time_end;
 			gettimeofday(&time_end, NULL);
 
-			// Keep track of the time to do statistics on
-			block_times[trial] = time_end.tv_usec - time_start.tv_usec;
-			printf("%06d,", (int) block_times[trial]);
-		}
+			// Keep track of the time for averaging later
+			int execution_time = (int) (time_end.tv_usec - time_start.tv_usec);
+			average += execution_time;
 
-		int average = 0;
-		for (int i = 0; i < TRIALS; ++i)
-			average += (int) block_times[i];
+			printf("%06d,", execution_time);
+		}
 
 		printf("%06d\n", average / TRIALS);
 	}
