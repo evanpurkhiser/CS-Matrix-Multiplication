@@ -31,9 +31,6 @@ int main(int argc, char*  argv[])
 	// Run TRIALS number of trials for each block size
 	for (int trial = 0; trial < TRIALS; ++trial)
 	{
-		long long average = 0;
-		long long fastest = LLONG_MAX;
-
 		printf("Trial %d: ", trial);
 
 		// Iterate through the block sizes
@@ -58,19 +55,14 @@ int main(int argc, char*  argv[])
 			// Keep track of when we finish our work
 			gettimeofday(&time_end, NULL);
 
-			// Keep track of the time for averaging later
+			// Calculate the time it took to do the above task
 			long long execution_time = 1000000LL
 				* (time_end.tv_sec  - time_start.tv_sec)
 				+ (time_end.tv_usec - time_start.tv_usec);
 
-			fastest  = fastest < execution_time ? fastest : execution_time;
-			average += execution_time;
-
 			printf("%lld,", execution_time);
 			fflush(stdout);
 		}
-
-		printf("%lld,%lld\n", average / TRIALS, fastest);
 	}
 
 	return 0;
