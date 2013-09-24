@@ -7,4 +7,4 @@ report.pdf: report/report.md
 all: experiment
 
 clean:
-	rm experiment
+	rm -f experiment report.pdf
