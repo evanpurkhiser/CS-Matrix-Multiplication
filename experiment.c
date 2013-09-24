@@ -10,7 +10,7 @@
 
 short A[MATRIX_SIZE][MATRIX_SIZE],
       B[MATRIX_SIZE][MATRIX_SIZE],
-      C[MATRIX_SIZE][MATRIX_SIZE] = {{0}};
+      C[MATRIX_SIZE][MATRIX_SIZE];
 
 int main(int argc, char*  argv[])
 {
@@ -30,6 +30,8 @@ int main(int argc, char*  argv[])
 		// Iterate through the block sizes
 		for (int block_size = 4; block_size <= (2 << EXPERIMENTS); block_size *= 2)
 		{
+			memset(C, 0, sizeof(C[0][0] * MATRIX_SIZE * MATRIX_SIZE));
+
 			// Keep track of when we start doing work
 			struct timeval time_start;
 			gettimeofday(&time_start, NULL);
