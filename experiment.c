@@ -12,6 +12,11 @@ short A[MATRIX_SIZE][MATRIX_SIZE],
       B[MATRIX_SIZE][MATRIX_SIZE],
       C[MATRIX_SIZE][MATRIX_SIZE];
 
+int max(int a, int b)
+{
+	return a > b ? a : b;
+}
+
 int main(int argc, char*  argv[])
 {
 	// Initalize array A and B with '1's
@@ -36,9 +41,13 @@ int main(int argc, char*  argv[])
 			struct timeval time_start;
 			gettimeofday(&time_start, NULL);
 
-
-			// Do work..
-
+			// Do block matrix multiplication
+			for (int k = 0; k < MATRIX_SIZE; k += block_size)
+				for (int j = 0; j < MATRIX_SIZE; j += block_size)
+					for (int i = 0; i < MATRIX_SIZE; ++i)
+						for (int jj = j; jj < max(j + block_size, MATRIX_SIZE); ++jj)
+							for (int kk = k; kk < max(k + block_size, MATRIX_SIZE); ++kk)
+								C[i][jj] += A[i][kk] * B[kk][jj];
 
 			// Keep track of when we finish our work
 			struct timeval time_end;
