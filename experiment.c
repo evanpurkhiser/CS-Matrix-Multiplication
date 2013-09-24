@@ -13,9 +13,9 @@ short A[MATRIX_SIZE][MATRIX_SIZE],
       B[MATRIX_SIZE][MATRIX_SIZE],
       C[MATRIX_SIZE][MATRIX_SIZE];
 
-int max(int a, int b)
+int min(int a, int b)
 {
-	return a > b ? a : b;
+	return a < b ? a : b;
 }
 
 int main(int argc, char*  argv[])
@@ -51,8 +51,8 @@ int main(int argc, char*  argv[])
 			for (k = 0; k < MATRIX_SIZE; k += block_size)
 				for (j = 0; j < MATRIX_SIZE; j += block_size)
 					for (i = 0; i < MATRIX_SIZE; ++i)
-						for (jj = j; jj < max(j + block_size, MATRIX_SIZE); ++jj)
-							for (kk = k; kk < max(k + block_size, MATRIX_SIZE); ++kk)
+						for (jj = j; jj < min(j + block_size, MATRIX_SIZE); ++jj)
+							for (kk = k; kk < min(k + block_size, MATRIX_SIZE); ++kk)
 								C[i][jj] += A[i][kk] * B[kk][jj];
 
 			// Keep track of when we finish our work
