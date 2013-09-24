@@ -1,8 +1,11 @@
 #include "stdio.h"
 #include "stdlib.h"
+#include "string.h"
+#include "limits.h"
 #include "sys/time.h"
 
-#define TRIALS 4
+#define TRIALS 8
+#define EXPERIMENTS 4
 #define MATRIX_SIZE 2048
 
 short A[MATRIX_SIZE][MATRIX_SIZE],
@@ -16,22 +19,18 @@ int main(int argc, char*  argv[])
 		for (int k = 0; k < MATRIX_SIZE; ++k)
 			A[i][k] = B[i][k] = 1;
 
-	// Show headings
-	printf("blk  ");
+	// Run TRIALS number of trials for each block size
 	for (int trial = 0; trial < TRIALS; ++trial)
-		printf(" run%d ,", trial);
-	puts(" avrg ");
-
-	// Iterate through the block sizes
-	for (int block_size = 4; block_size <= 256; block_size *= 2)
 	{
-		int average = 0;
+		long long average = 0;
+		long long fastest = LLONG_MAX;
 
-		printf("%03d: ", block_size);
+		printf("Trial %d: ", trial);
 
-		// Run TRIALS number of trials for each block size
-		for (int trial = 0; trial < TRIALS; ++trial)
+		// Iterate through the block sizes
+		for (int block_size = 4; block_size <= (2 << EXPERIMENTS); block_size *= 2)
 		{
+			// Keep track of when we start doing work
 			struct timeval time_start;
 			gettimeofday(&time_start, NULL);
 
@@ -39,17 +38,23 @@ int main(int argc, char*  argv[])
 			// Do work..
 
 
+			// Keep track of when we finish our work
 			struct timeval time_end;
 			gettimeofday(&time_end, NULL);
 
 			// Keep track of the time for averaging later
-			int execution_time = (int) (time_end.tv_usec - time_start.tv_usec);
+			long long execution_time = 1000000LL
+				* (time_end.tv_sec  - time_start.tv_sec)
+				+ (time_end.tv_usec - time_start.tv_usec);
+
+			fastest  = fastest < execution_time ? fastest : execution_time;
 			average += execution_time;
 
-			printf("%06d,", execution_time);
+			printf("%lld,", execution_time);
+			fflush(stdout);
 		}
 
-		printf("%06d\n", average / TRIALS);
+		printf("%lld,%lld\n", average / TRIALS, fastest);
 	}
 
 	return 0;
