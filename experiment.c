@@ -17,6 +17,7 @@ int main(int argc, char*  argv[])
 			A[i][k] = B[i][k] = 1;
 
 	// Show headings
+	printf("blk  ");
 	for (int trial = 0; trial < TRIALS; ++trial)
 		printf(" run%d ,", trial);
 	puts(" avrg ");
@@ -24,6 +25,8 @@ int main(int argc, char*  argv[])
 	// Iterate through the block sizes
 	for (int block_size = 4; block_size <= 256; block_size *= 2)
 	{
+		printf("%03d: ", block_size);
+
 		// Keep track of the times for this block
 		time_t block_times[TRIALS];
 
