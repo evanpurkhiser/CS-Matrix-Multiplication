@@ -24,6 +24,9 @@ int main(int argc, char*  argv[])
 		for (int k = 0; k < MATRIX_SIZE; ++k)
 			A[i][k] = B[i][k] = 1;
 
+	// Initalize our matix looping variables once
+	int k, j, i, jj, kk;
+
 	// Run TRIALS number of trials for each block size
 	for (int trial = 0; trial < TRIALS; ++trial)
 	{
@@ -37,20 +40,22 @@ int main(int argc, char*  argv[])
 		{
 			memset(C, 0, sizeof(C[0][0] * MATRIX_SIZE * MATRIX_SIZE));
 
-			// Keep track of when we start doing work
 			struct timeval time_start;
+			struct timeval time_end;
+
+			// Keep track of when we start doing work
 			gettimeofday(&time_start, NULL);
 
+
 			// Do block matrix multiplication
-			for (int k = 0; k < MATRIX_SIZE; k += block_size)
-				for (int j = 0; j < MATRIX_SIZE; j += block_size)
-					for (int i = 0; i < MATRIX_SIZE; ++i)
-						for (int jj = j; jj < max(j + block_size, MATRIX_SIZE); ++jj)
-							for (int kk = k; kk < max(k + block_size, MATRIX_SIZE); ++kk)
+			for (k = 0; k < MATRIX_SIZE; k += block_size)
+				for (j = 0; j < MATRIX_SIZE; j += block_size)
+					for (i = 0; i < MATRIX_SIZE; ++i)
+						for (jj = j; jj < max(j + block_size, MATRIX_SIZE); ++jj)
+							for (kk = k; kk < max(k + block_size, MATRIX_SIZE); ++kk)
 								C[i][jj] += A[i][kk] * B[kk][jj];
 
 			// Keep track of when we finish our work
-			struct timeval time_end;
 			gettimeofday(&time_end, NULL);
 
 			// Keep track of the time for averaging later
