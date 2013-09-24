@@ -2,14 +2,14 @@
 #include "stdlib.h"
 
 #define TRIALS 4
-#define MATRIX_SIZE 1024
+#define MATRIX_SIZE 2048
+
+short A[MATRIX_SIZE][MATRIX_SIZE],
+      B[MATRIX_SIZE][MATRIX_SIZE],
+      C[MATRIX_SIZE][MATRIX_SIZE] = {{0}};
 
 int main(int argc, char*  argv[])
 {
-	short A[MATRIX_SIZE][MATRIX_SIZE],
-	      B[MATRIX_SIZE][MATRIX_SIZE],
-	      C[MATRIX_SIZE][MATRIX_SIZE];
-
 	// Initalize array A and B with '1's
 	for (int i = 0; i < MATRIX_SIZE; ++i)
 		for (int k = 0; k < MATRIX_SIZE; ++k)
