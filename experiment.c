@@ -5,7 +5,8 @@
 #include "sys/time.h"
 
 #define TRIALS 8
-#define EXPERIMENTS 4
+#define BLOCK_MIN 256
+#define BLOCK_MAX 2048
 #define MATRIX_SIZE 2048
 
 short A[MATRIX_SIZE][MATRIX_SIZE],
@@ -36,7 +37,7 @@ int main(int argc, char*  argv[])
 		printf("Trial %d: ", trial);
 
 		// Iterate through the block sizes
-		for (int block_size = 4; block_size <= (2 << EXPERIMENTS); block_size *= 2)
+		for (int block_size = BLOCK_MIN; block_size <= BLOCK_MAX; block_size *= 2)
 		{
 			memset(C, 0, sizeof(C[0][0] * MATRIX_SIZE * MATRIX_SIZE));
 
@@ -45,7 +46,6 @@ int main(int argc, char*  argv[])
 
 			// Keep track of when we start doing work
 			gettimeofday(&time_start, NULL);
-
 
 			// Do block matrix multiplication
 			for (k = 0; k < MATRIX_SIZE; k += block_size)
