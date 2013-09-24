@@ -1,4 +1,3 @@
-
 experiment: experiment.c
 	gcc -Wall -std=c99 -o experiment experiment.c
 
