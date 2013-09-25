@@ -127,9 +127,9 @@ This is in-fact what is slowing down the calculation when no blocks are used.
 
 ## Small discrepancies
 
-It's interesting to note that for the first 3 experiments (block sizes 256, 512,
-and 1024) the first trial was consistently the fastest trial. This is not true
-however for the largest block size (2048) where the 5th trial is actually the
-fastest. We can speculate as to why this may be, but it's most likely due to
-various factors primarily including what other processes are competing for time
-on the CPU.
+It's interesting to note that for the first 3 experiments (block sizes 256,
+512, and 1024) the first trial was consistently the fastest trial. This is not
+true however for the largest block size (2048) where the 5th trial is actually
+the fastest. We can speculate as to why this may be, but it's most likely a
+coincidence due to various factors primarily including what other processes are
+competing for time on the CPU.
