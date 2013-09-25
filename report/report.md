@@ -67,7 +67,7 @@ first experiment we will start with a 256 block size, for each successive
 experiment we will double the block size. We continue doing this until reaching
 a maximum block size of 2048 (The same size as our matrix).
 
-### Procedure
+## Procedure
 
 The following command was used to execute the program
 
@@ -84,7 +84,7 @@ Looking at the 'user' time (which is the time that the processor spent executing
 the program _not_ including other process slices) we can see that in total it
 took 36 minutes and 29 seconds  to execute all 8 trials of 4 experiments each.
 
-### Results
+## Results
 
 | Trial   | 256      | 512      | 1024     | 2048      |
 | ------- | -------- | -------- | -------- | --------- |
@@ -125,7 +125,7 @@ parts of the cache may be swapped out when other processes execute during their
 time slices, thus causing the experiment process to have to read from memory.
 This is in-fact what is slowing down the calculation when no blocks are used.
 
-### Small discrepancies
+## Small discrepancies
 
 It's interesting to note that for the first 3 experiments (block sizes 256, 512,
 and 1024) the first trial was consistently the fastest trial. This is not true
