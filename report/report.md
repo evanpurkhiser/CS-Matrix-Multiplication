@@ -106,7 +106,7 @@ calculated the average and fastest for each of the block sizes.
 | Fastest  | 51862692 | 51924947 | 51642729 | 096682117 |
 
 As we can see from the results, all of the block sizes seem to be fairly close
-in size, the outlier being the 2048 block size. In general the first 3 block
+in speed, the outlier being the 2048 block size. In general the first 3 block
 sizes took ~53 seconds to complete, while the 2048 block size calculation took
 nearly 2 minutes to complete. Let's take a look at why it turned out like that.
 
