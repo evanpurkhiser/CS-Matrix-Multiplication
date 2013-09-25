@@ -118,7 +118,7 @@ cache causing it to have to do IO with the main memory. But can we prove this?
 
 The matrix arrays contain the `short` C type. This is a 16 bit integer.
 
-	16 bits * 2048 * 2048 = 64 8 Megabytes
+	16 bits * 2048 * 2048 = 8 Megabytes
 
 While all the data could theoretically fit into my processors 8MB L3 cache,
 parts of the cache may be swapped out when other processes execute during their
