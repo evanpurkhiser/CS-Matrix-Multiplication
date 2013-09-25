@@ -23,7 +23,8 @@ very similar to what was given in the original lab handout.
 
 As you can see, this differs from the standard matrix multiplication algorithm
 in that it has an extra two loops handle setting up the block that it will be
-calculating.
+calculating. I've also moved the variable initalizers out of the loop (though
+the compiler probably would have optmized this).
 
 We also have a few variables we can specify here:
 
