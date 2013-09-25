@@ -6,7 +6,7 @@ Evan Purkhiser
 
 In this lab we are tasked with writing a program that will execute a 'blocked
 matrix multiplication' algorithm. This is a variation on normal matrix
-multiplication where in you divide the matrix into smaller sub-matrices and
+multiplication wherein you divide the matrix into smaller sub-matrices and
 then calculate those matrices individually. The advantage of this method is
 that you will keep the values that you need to do the matrix calculation in the
 cache longer. This will speed up the calculations.
@@ -23,8 +23,8 @@ very similar to what was given in the original lab handout.
 
 As you can see, this differs from the standard matrix multiplication algorithm
 in that it has an extra two loops handle setting up the block that it will be
-calculating. I've also moved the variable initalizers out of the loop (though
-the compiler probably would have optmized this).
+calculating. I've also moved the variable initializers out of the loop (though
+the compiler probably would have optimized this).
 
 We also have a few variables we can specify here:
 
@@ -35,10 +35,10 @@ We also have a few variables we can specify here:
  * `block_size`: This represents the size of the block that should be
    calculated for each iteration. This should not be larger than the
    `MATRIX_SIZE`. If it is equal to the size of the matrix then the algorithm
-   is no longer a blocked matrix multiplciation 
+   is no longer a blocked matrix multiplication
 
  * `A`, `B` and `C`: These are the matrices represented by a two dimensional
-   array of size `MATRIX_SIZE`. both `A` and `B` are initialize with all 1s,
+   array of size `MATRIX_SIZE`. Both `A` and `B` are initialize with all 1s,
    and `C` is initialized to 0.
 
 ## Using `min` instead of `max`
