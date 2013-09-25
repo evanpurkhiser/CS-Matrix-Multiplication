@@ -133,6 +133,3 @@ however for the largest block size (2048) where the 5th trial is actually the
 fastest. We can speculate as to why this may be, but it's most likely due to
 various factors primarily including what other processes are competing for time
 on the CPU.
-
----
-Report by Evan Purkhiser - evanpurkhiser.com
