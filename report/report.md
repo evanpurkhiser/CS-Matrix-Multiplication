@@ -5,11 +5,11 @@ Evan Purkhiser
 ## Problem Description
 
 In this lab we are tasked with writing a program that will execute a 'blocked
-matrix Multiplication' algorithm. This is a variation on normal matrix
-multiplication where in you divide the matrix into smaller sub-matrix's and then
-calculate those matrix's individually. The advantage of this method is that you
-will keep the values that you need to do the matrix calculation in the cache
-longer. This will speed up the calculations.
+matrix multiplication' algorithm. This is a variation on normal matrix
+multiplication where in you divide the matrix into smaller sub-matrices and
+then calculate those matrices individually. The advantage of this method is
+that you will keep the values that you need to do the matrix calculation in the
+cache longer. This will speed up the calculations.
 
 I've implemented matrix multiplication using the following algorithm. This is
 very similar to what was given in the original lab handout.
@@ -31,14 +31,14 @@ We also have a few variables we can specify here:
    `MATRIX_SIZE` was set to 512, then you would have a matrix of 512x512. For
    our experiment we will be using a matrix size of 2048x2048.
 
- * `block_size`: This represents the size of the block that should be calculated
-   for each iteration. This should not be larger than the `MATRIX_SIZE`. If it
-	is equal to the size of the matrix then the algorithm is no longer a blocked
-	matrix multiplciation
+ * `block_size`: This represents the size of the block that should be
+   calculated for each iteration. This should not be larger than the
+   `MATRIX_SIZE`. If it is equal to the size of the matrix then the algorithm
+   is no longer a blocked matrix multiplciation 
 
- * `A`, `B` and `C`: These are the matrix's, represented by a two dimensional
-   array of size `MATRIX_SIZE`. both `A` and `B` are initialize with all 1s, and
-   `C` is initialized to 0.
+ * `A`, `B` and `C`: These are the matrices represented by a two dimensional
+   array of size `MATRIX_SIZE`. both `A` and `B` are initialize with all 1s,
+   and `C` is initialized to 0.
 
 ## Using `min` instead of `max`
 
@@ -47,8 +47,8 @@ In the sample implementation given in the original PDF handout, the function
 testing of the program. Initial experiments where the algorithm was using the
 `max` function to determine the right and bottom bounds of the block to
 calculate would cause the bounds to always span the entire right-bottom side of
-the matrix. This caused the matrix calculation to run both inefficiently as well
-as incorrectly.
+the matrix. This caused the matrix calculation to run both inefficiently as
+well as incorrectly.
 
 This problem was solved by using `min` instead to calculate the right-bottom
 bounds.
@@ -61,10 +61,10 @@ POSIX `gettimeofday` function defined in `sys/time.h`. This function will give
 us back real time (wall clock time) with microsecond resolution.
 
 We will be running 8 trials of our experiments, for each trial we will run 4
-different experiment. Our varying factor will be the `block_size`. For the first
-experiment we will start with a 256 block size, for each successive experiment
-we will double the block size. We continue doing this until reaching a maximum
-block size of 2048 (The same size as our matrix).
+different experiment. Our varying factor will be the `block_size`. For the
+first experiment we will start with a 256 block size, for each successive
+experiment we will double the block size. We continue doing this until reaching
+a maximum block size of 2048 (The same size as our matrix).
 
 ### Procedure
 
@@ -109,15 +109,15 @@ in size, the outlier being the 2048 block size. In general the first 3 block
 sizes took ~53 seconds to complete, while the 2048 block size calculation took
 nearly 2 minutes to complete. Let's take a look at why it turned out like that.
 
-I ran the program on my home desktop machine. This machine uses a Intel i7 3770k
-quad core processor (with 4 extra virtual cores due to multi threading). This
-particular CPU has 256kb of L2 cache as well as 8Mb of L3 cache. From this we
-can suspect that the 2048x2048 size matrix is running out of room on the CPU
+I ran the program on my home desktop machine. This machine uses a Intel i7
+3770k quad core processor (with 4 extra virtual cores due to multi threading).
+This particular CPU has 256kb of L2 cache as well as 8Mb of L3 cache. From this
+we can suspect that the 2048x2048 size matrix is running out of room on the CPU
 cache causing it to have to do IO with the main memory. But can we prove this?
 
 The matrix arrays contain the `short` C type. This is a 16 bit integer.
 
-    16 bits * 2048 * 2048 = 64 8 Megabytes
+	16 bits * 2048 * 2048 = 64 8 Megabytes
 
 While all the data could theoretically fit into my processors 8MB L3 cache,
 parts of the cache may be swapped out when other processes execute during their
