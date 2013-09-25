@@ -16,7 +16,7 @@ make
 ./experiement
 ````
 
-Be warned, the expermiment will take around 10 minutes to fully complete.
+Be warned, the expermiment will take around 30 minutes to fully complete.
 
 #### Report
 
